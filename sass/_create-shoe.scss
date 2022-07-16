@@ -1,0 +1,35 @@
+.create-shoe {
+
+    &__container {
+
+        display: flex;
+        flex-direction: column;
+
+        div {
+            margin-bottom: 15px;;
+        }
+    
+        label {
+            width: 60px;
+            display: inline-block;
+        }
+
+        input {
+            display: inline-block;
+            height: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+
+            &:focus {
+                border: 1px solid #777;
+            }
+        }
+     
+    }
+
+    button {
+        display: block;
+    }
+ 
+    
+}

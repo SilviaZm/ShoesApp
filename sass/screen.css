@@ -1,0 +1,149 @@
+.home__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.home__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 0 10px 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home__header h3 {
+  margin: 0;
+  color: #534f53;
+}
+
+.home__header__search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home__header__search input {
+  width: 143px;
+  padding: 5px 3px;
+  border: 1px solid #ddd;
+  height: 20px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.sidebar {
+  padding-left: 30px;
+}
+
+.sidebar__item {
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ede3f1;
+  padding-top: 10px;
+  min-width: 500px;
+}
+
+table th {
+  border-bottom: 1px solid #ede3f1;
+  text-align: left;
+  padding: 5px 10px;
+  color: #919191;
+}
+
+table tr td {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+table tr:nth-child(even) {
+  background-color: #e6d9dc;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  padding: 30px;
+  color: #2c3531;
+}
+
+label {
+  color: #919191;
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+select {
+  width: 150px;
+  margin-top: 30px;
+  background-color: #f7eef0;
+  padding: 5px 3px;
+  margin: 5px 0 0;
+  border: 1px solid #ede3f1;
+}
+
+select:focus-visible {
+  outline: none;
+}
+
+.button__primary {
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  background: #776167;
+  border: 2px solid #776167;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.create-shoe__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.create-shoe__container div {
+  margin-bottom: 15px;
+}
+
+.create-shoe__container label {
+  width: 60px;
+  display: inline-block;
+}
+
+.create-shoe__container input {
+  display: inline-block;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.create-shoe__container input:focus {
+  border: 1px solid #777;
+}
+
+.create-shoe button {
+  display: block;
+}
+/*# sourceMappingURL=screen.css.map */

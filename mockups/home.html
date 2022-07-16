@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../sass/screen.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="home__container">
+            <div>
+                <div class="home__header">
+                    <h3>Shoes</h3>
+                    <div class="home__header__search">
+                        <label>Search by model</label>
+                        <input class="searchInput">
+                    </div> 
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>Tip</th>
+                            <th>Culoare</th>
+                            <th>Numar</th>
+                            <th>Material</th>   
+                        </tr>
+                    </thead>
+                    <tbody class="bodyTable">
+                        <tr>
+                            <td>Titanic</td>
+                            <td>150</td>
+                            <td>romance</td>
+                            <td>yes</td>
+                        </tr>
+                        <tr>
+                            <td>Titanic</td>
+                            <td>150</td>
+                            <td>romance</td>
+                            <td>yes</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="sidebar">
+                <h3>Filters</h3>
+                <div class="sidebar__item">
+                    <fieldset>
+                        <label for="">Filter by color</label>
+                        <select class="select" name="" id="">
+                            <option value="">negru</option>
+                            <option value="">maro</option>
+                            <option value="">alb</option>
+                            <option value="">bej</option>
+                            <option value="">verde</option>
+                        </select>
+                    </fieldset>
+                </div> 
+                <div class="sidebar__item">
+                    <fieldset>
+                        <label for="">Order by</label>
+                        <select class="select">                            <option  class="selectModel" value="model">Model</option>
+                            <option value="tip" class="selectTip">Tip</option>
+                            <option value="culoare" class="selectCuloare">Culoare</option>
+                            <option value="numar" class="selectNumar">Numar</option>
+                            <option value="material" class="selectMaterial">Material</option>
+                        </select>
+                    </fieldset>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+   
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+html {
+    font-family: 'Roboto', sans-serif;
+    padding: 30px;
+    color: #2c3531;
+}
+
+label {
+    color: #919191;
+    font-weight: bold;
+    font-size: 14px;
+    display: block;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+select {
+    width: 150px;
+    margin-top: 30px;
+    background-color: #f7eef0;
+    padding: 5px 3px;
+    margin: 5px 0 0;
+    border: 1px solid #ede3f1;;
+}
+
+select:focus-visible  {
+    outline: none;
+}
+
+.button__primary {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    background: #776167;
+    border: 2px solid #776167;
+    border-radius: 4px;
+    color: #fff;
+}
