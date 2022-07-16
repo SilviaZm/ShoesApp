@@ -72,6 +72,10 @@ table tr:nth-child(even) {
   background-color: #e6d9dc;
 }
 
+.button__home__create {
+  margin-top: 15px;
+}
+
 html {
   font-family: 'Roboto', sans-serif;
   padding: 30px;
@@ -144,6 +148,40 @@ select:focus-visible {
 }
 
 .create-shoe button {
+  display: block;
+}
+
+.update-shoe__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.update-shoe__container div {
+  margin-bottom: 15px;
+}
+
+.update-shoe__container label {
+  width: 60px;
+  display: inline-block;
+}
+
+.update-shoe__container input {
+  display: inline-block;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.update-shoe__container input:focus {
+  border: 1px solid #777;
+}
+
+.update-shoe button {
   display: block;
 }
 /*# sourceMappingURL=screen.css.map */
