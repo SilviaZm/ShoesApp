@@ -200,9 +200,12 @@ function setHome() {
     tableBody.addEventListener("click",(e)=>{
  
         let obj = e.target;
+        console.log(obj);
+    
         if(obj.classList.contains("model")){
 
             let model=obj.textContent;
+            console.log("table body target" + model);
              setUpdateShoe(returnShoeByModel(pantofi,model))
         }
     })
@@ -314,32 +317,58 @@ function setUpdateShoe(shoe) {
         <div class="update-shoe__form">
             <div>
                 <label for="">Model</label>
-                <input type="text" class="modelInput" value='${shoe.model}'>
+                <input type="text" class="updateModelInput" value='${shoe.model}'>
             </div> 
             <div>
                 <label for="">Tip</label>
-                <input type="text" class="tipInput" value='${shoe.tip}'>
+                <input type="text" class="updateTipInput" value='${shoe.tip}'>
             </div>
             <div>
                 <label for="">Culoare</label>
-                <input type="text" class="culoareInput" value='${shoe.culoare}'>
+                <input type="text" class="updateCuloareInput" value='${shoe.culoare}'>
             </div>
             <div>
                 <label for="">Numar</label>
-                <input type="text" class="numarInput" value='${shoe.numar}'>
+                <input type="text" class="updateNumarInput" value='${shoe.numar}'>
             </div>
             <div>
                 <label for="">Material</label>
-                <input type="text" class="materialInput" value='${shoe.material}'>
+                <input type="text" class="updateMaterialInput" value='${shoe.material}'>
             </div>
             <label for=""> </label>
             <div>
-                <button class="button__primary createNewWatch">Update this shoe</button>
-                <button class="button__primary cancelButton">Cancel</button>
+                <button class="button__primary updateShoeButton">Update this shoe</button>
+                <button class="button__primary cancelUpdateButton">Cancel</button>
             </div>
         </div>
     </div>
     `
+    let updateShoeButton = document.querySelector(".updateShoeButton");
+    let cancelUpdateButton = document.querySelector(".cancelUpdateButton");
+    let updateModelInput = document.querySelector(".updateModelInput");
+    let updateTipInput = document.querySelector(".updateTipInput");
+    let updateCuloareInput = document.querySelector(".updateCuloareInput");
+    let updateNumarInput = document.querySelector(".updateNumarInput");
+    let updateMaterialInput = document.querySelector(".updateMaterialInput");
+
+    updateShoeButton.addEventListener('click', () => {
+        let updatedShoe = {
+
+            model: updateModelInput.value,
+            tip: updateTipInput.value,
+            culoare: updateCuloareInput.value,
+            numar: updateNumarInput.value,
+            material: updateMaterialInput.value
+        }
+
+        updateShoe(updatedShoe);
+        setHome();
+    })
+
+    cancelUpdateButton.addEventListener('click', () => {
+        setHome();
+    })
+
 }
 
 
@@ -374,10 +403,13 @@ function returnShoeByModel(arr, model) {
 
     for(let i=0; i<arr.length; i++) {
 
+        console.log(model);
+        console.log(arr[i].model);
         if(arr[i].model == model) {
             return arr[i];
         }
 
-        return -1;
+       
     }
+    return -1;
 }
