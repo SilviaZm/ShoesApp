@@ -82,6 +82,10 @@ html {
   color: #2c3531;
 }
 
+.container {
+  position: relative;
+}
+
 label {
   color: #919191;
   font-weight: bold;
@@ -115,6 +119,32 @@ select:focus-visible {
   border: 2px solid #776167;
   border-radius: 4px;
   color: #fff;
+}
+
+.alert {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.alert__item {
+  -webkit-box-shadow: 1px 1px 10px 0px #ddd;
+          box-shadow: 1px 1px 10px 0px #ddd;
+  position: relative;
+  padding: 30px 30px 20px;
+}
+
+.alert__item span {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+  font-size: 20px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.alert__item__close {
+  cursor: pointer;
 }
 
 .create-shoe__container {

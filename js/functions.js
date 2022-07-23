@@ -92,6 +92,25 @@ let pantofi = [
     }
 ]
 
+function populateTable(arr) {
+    let text = '';
+    let tableBody = document.querySelector('.bodyTable');
+
+    for(let i=0; i<arr.length; i++) {
+        text += `
+            <tr>
+                <td class="model">${arr[i].model}</td>
+                <td>${arr[i].tip}</td>
+                <td>${arr[i].culoare}</td>
+                <td>${arr[i].numar}</td>
+                <td>${arr[i].material}</td>
+            </tr>
+        `
+    }
+
+    tableBody.innerHTML = text;
+    return text;
+}
 //variabile
 let container = document.querySelector(".container");
 
@@ -99,7 +118,7 @@ let container = document.querySelector(".container");
 
 //set functions
 function setHome() {
-    
+   
     container.innerHTML = `
         <div class="home__container">
             <div>
@@ -141,7 +160,7 @@ function setHome() {
                 <div class="sidebar__item">
                     <fieldset>
                         <label for="">Filter by color</label>
-                        <select class="select" name="" id="">
+                        <select class="selectFilter" name="" id="">
                             <option value="">negru</option>
                             <option value="">maro</option>
                             <option value="">alb</option>
@@ -153,7 +172,9 @@ function setHome() {
                 <div class="sidebar__item">
                     <fieldset>
                         <label for="">Order by</label>
-                        <select class="select">                            <option  class="selectModel" value="model">Model</option>
+                        <select class="selectSort">               
+                             <option value="">-------</option>             
+                            <option value="model" class="selectModel">Model</option>
                             <option value="tip" class="selectTip">Tip</option>
                             <option value="culoare" class="selectCuloare">Culoare</option>
                             <option value="numar" class="selectNumar">Numar</option>
@@ -167,26 +188,11 @@ function setHome() {
         
     `
 
+   
     let tableBody = document.querySelector('.bodyTable');
-
-    function populateTable(arr) {
-        let text = '';
-    
-        for(let i=0; i<arr.length; i++) {
-            text += `
-                <tr>
-                    <td class="model">${arr[i].model}</td>
-                    <td>${arr[i].tip}</td>
-                    <td>${arr[i].culoare}</td>
-                    <td>${arr[i].numar}</td>
-                    <td>${arr[i].material}</td>
-                </tr>
-            `
-        }
-    
-        tableBody.innerHTML = text;
-        return text;
-    }
+    let searchInput = document.querySelector('.searchInput');
+    let selectSort = document.querySelector('.selectSort');
+    let selectFilterByColor = document.querySelector('.selectFilter');
     
     populateTable(pantofi);
 
@@ -200,16 +206,64 @@ function setHome() {
     tableBody.addEventListener("click",(e)=>{
  
         let obj = e.target;
-        console.log(obj);
     
         if(obj.classList.contains("model")){
 
             let model=obj.textContent;
-            console.log("table body target" + model);
              setUpdateShoe(returnShoeByModel(pantofi,model))
         }
     })
 
+
+    searchInput.addEventListener('input', () => {
+
+        let value = searchInput.value;
+
+        let filteredObj= filterByModel(value, pantofi);
+
+        populateTable(filteredObj);
+
+    })
+
+    selectFilterByColor.addEventListener('change', () => {
+
+        let alegere = selectFilterByColor.value;
+        console.log(alegere);
+    
+            let filtrare = filterByColor(pantofi, alegere);
+        console.log(filtrare);
+            populateTable(filtrare);
+ 
+    
+    
+        //    alert(alegere);
+    });
+
+    selectSort.addEventListener('click', () => {
+        
+        if(selectSort.value==='model'){
+
+
+            sortByModel();
+        }
+
+        if(selectSort.value==='tip'){
+
+
+            sortByTip();
+        }
+    })
+
+    // selectSort.addEventListener('click', () => {
+    //     let option = selectSort.value;
+    //     console.log(option);
+
+    //     if(option.classList.includes("model")){
+
+    //         sortBy(model);
+    //     }
+        
+    // })
 }
 
 function setCreateShoe() {
@@ -338,20 +392,49 @@ function setUpdateShoe(shoe) {
             <label for=""> </label>
             <div>
                 <button class="button__primary updateShoeButton">Update this shoe</button>
+                <button class="button__primary deleteShoeButton">Delete this shoe</button>
                 <button class="button__primary cancelUpdateButton">Cancel</button>
             </div>
         </div>
     </div>
     `
     let updateShoeButton = document.querySelector(".updateShoeButton");
+    let deleteShoeButton = document.querySelector(".deleteShoeButton");
     let cancelUpdateButton = document.querySelector(".cancelUpdateButton");
     let updateModelInput = document.querySelector(".updateModelInput");
     let updateTipInput = document.querySelector(".updateTipInput");
     let updateCuloareInput = document.querySelector(".updateCuloareInput");
     let updateNumarInput = document.querySelector(".updateNumarInput");
     let updateMaterialInput = document.querySelector(".updateMaterialInput");
+    let eroriUpdate = [];
+
+    function checkEroriUpdate(){
+      
+        
+        if (updateModelInput.value == "") {
+            eroriUpdate.push(" modelul ");
+        };
+
+        if (updateTipInput.value == "") {
+            eroriUpdate.push(" tipul ");
+        };
+
+        if (updateCuloareInput.value == "") {
+            eroriUpdate.push(" culoarea ");
+        };
+
+        if (updateNumarInput.value == "") {
+            eroriUpdate.push(" numarul ");
+        };
+
+        if (updateMaterialInput.value == "") {
+            eroriUpdate.push(" materialul ");
+        };
+
+    }
 
     updateShoeButton.addEventListener('click', () => {
+      
         let updatedShoe = {
 
             model: updateModelInput.value,
@@ -360,28 +443,44 @@ function setUpdateShoe(shoe) {
             numar: updateNumarInput.value,
             material: updateMaterialInput.value
         }
+      
 
-        updateShoe(updatedShoe);
+        checkEroriUpdate();
+
+
+        if(eroriUpdate.length == 0) {
+        
+            setHome();
+        }
+
+        else {
+            initAlert("Nu ati introdus" + eroriUpdate); 
+        }
+
+        
+    })
+
+    deleteShoeButton.addEventListener('click', () => {
+        let deletedShoe = {
+
+            model: updateModelInput.value,
+            tip: updateTipInput.value,
+            culoare: updateCuloareInput.value,
+            numar: updateNumarInput.value,
+            material: updateMaterialInput.value
+        }
+
+        deleteShoe(deletedShoe);
         setHome();
     })
+
+
 
     cancelUpdateButton.addEventListener('click', () => {
         setHome();
     })
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -403,8 +502,7 @@ function returnShoeByModel(arr, model) {
 
     for(let i=0; i<arr.length; i++) {
 
-        console.log(model);
-        console.log(arr[i].model);
+       
         if(arr[i].model == model) {
             return arr[i];
         }
@@ -412,4 +510,122 @@ function returnShoeByModel(arr, model) {
        
     }
     return -1;
+}
+
+function deleteShoe(shoe) {
+
+    let arr = [];
+
+    for(let i=0; i<pantofi.length; i++) {
+        if(pantofi[i].model !== shoe.model) {
+            
+            arr.push(pantofi[i]);
+        }
+    }
+
+ 
+    pantofi=arr;
+
+}
+
+//primeste text si returneaza alerta
+
+function initAlert(text) {
+    container.innerHTML += `
+    <div class="alert">
+        <div class="alert__item">${text}
+            <span class="alert__item__close">+</span>
+        </div>
+    </div>
+    `
+    let closeUpdateButton = document.querySelector(".alert__item__close");
+    let alertItem = document.querySelector(".alert__item");
+     
+    closeUpdateButton.addEventListener('click', () => {
+
+        console.log("aici");
+        alertItem.style.display = 'none';
+
+    })
+}
+
+function filterByModel(model,arr) {
+
+    let filtered = [];
+
+    for(let i=0; i<arr.length; i++) {
+
+        if(arr[i].model.includes(model)) {
+            filtered.push(arr[i]);
+        }
+    }
+
+    return filtered;
+}
+
+function sortByModel() {
+
+    for(let i=0; i<pantofi.length-1; i++) {
+
+        for(let j=i+1; j<pantofi.length; j++) {
+
+            if(pantofi[i].model > pantofi[j].model) {
+                let x = pantofi[i];
+                pantofi[i] = pantofi[j];
+                pantofi[j]= x;
+
+            }
+        }
+    }
+
+    populateTable(pantofi);
+}
+
+function sortByTip() {
+
+    for(let i=0; i<pantofi.length-1; i++) {
+
+        for(let j=i+1; j<pantofi.length; j++) {
+
+            if(pantofi[i].tip > pantofi[j].tip) {
+                let x = pantofi[i];
+                pantofi[i] = pantofi[j];
+                pantofi[j]= x;
+
+            }
+        }
+    }
+
+    populateTable(pantofi);
+}
+
+// function sortBy(sortCondition) {
+//     for(let i=0; i<pantofi.length-1; i++) {
+
+//         for(let j=i+1; j<pantofi.length; j++) {
+
+//             if(pantofi[i].sortCondition > pantofi[j].sortCondition) {
+//                 let x = pantofi[i];
+//                 pantofi[i] = pantofi[j];
+//                 pantofi[j]= x;
+
+//             }
+//         }
+//     }
+
+//     populateTable(pantofi);
+// }
+
+function filterByColor(arr, color) {
+
+    let sameColor = [];
+
+    for (let i = 0; i < arr.length; i++) {
+
+        if (arr[i].culoare === color) {
+            sameColor.push(arr[i]);
+        }
+    }
+
+    return sameColor;
 }
